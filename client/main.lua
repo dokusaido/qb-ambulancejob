@@ -663,7 +663,7 @@ end)
 
 RegisterNetEvent('hospital:client:RespawnAtHospital', function()
     TriggerServerEvent('hospital:server:RespawnAtHospital')
-    if exports['qb-policejob']:IsHandcuffed() then
+    if exports['qb-ambulance']:IsHandcuffed() then
         TriggerEvent('police:client:GetCuffed', -1)
     end
     TriggerEvent('police:client:DeEscort')
@@ -982,3 +982,28 @@ else
         end
     end)
 end
+
+-- Spawn Ambulance Boat
+RegisterNetEvent('ambulance:checkProximityToWater', function()
+    local playerPed = PlayerPedId()
+    local playerCoords = GetEntityCoords(playerPed)
+    if IsEntityInWater(playerPed) then
+        TriggerServerEvent('ambulance:spawnVehicleForPlayer')
+    else
+        QBCore.Functions.Notify('You need to be near water to do this.', 'error')
+    end
+end)
+
+RegisterNetEvent('ambulance:aboat', function(vehicleName)
+    local playerPed = PlayerPedId()
+    local pos = GetEntityCoords(playerPed)
+    local vehicleHash = GetHashKey(vehicleName)
+
+    RequestModel(vehicleHash)
+    while not HasModelLoaded(vehicleHash) do
+        Wait(1)
+    end
+
+    local spawnedVehicle = CreateVehicle(vehicleHash, pos.x, pos.y, pos.z, GetEntityHeading(playerPed), true, false)
+    SetPedIntoVehicle(playerPed, spawnedVehicle, -1)
+end)

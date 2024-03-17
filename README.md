@@ -18,6 +18,24 @@ setr UseTarget false
 setr UseTarget true
 ```
 
+# Additional Commands
+  - /aboat
+<details>
+  <summary>Click to Expand - Add to qb-radialmenu/config.lua:502</summary>
+Place under Ambulance Job
+
+'''
+{
+            id = 'aboat',
+            title = 'EMS Boat',
+            icon = 'ship',
+            type = 'command',
+            event = 'aboat',
+            shouldClose = true
+        },
+'''
+</details>
+
 
 # License
 

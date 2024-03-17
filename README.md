@@ -24,8 +24,8 @@ setr UseTarget true
   <summary>Click to Expand - Add to qb-radialmenu/config.lua:502</summary>
 Place under Ambulance Job
 
-'''
-{
+
+        {
             id = 'aboat',
             title = 'EMS Boat',
             icon = 'ship',
@@ -33,7 +33,7 @@ Place under Ambulance Job
             event = 'aboat',
             shouldClose = true
         },
-'''
+
 </details>
 
 
